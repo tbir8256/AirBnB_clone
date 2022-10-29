@@ -12,15 +12,23 @@ from datetime import datetime
 class BaseModel:
     """Initialising common attributes and methods
     """
-    def __init__(self, id, created_at, updated_at):
-    """
-    Initialize BaseModel
-    """
-
-    self.id = str(uuid4())
-    self.created_at = datetime.now()
-    self.updated_at = datetime.now()
-
+    
+ def __init__(self, *args, **kwargs):
+        """
+        Initialize the BaseModel class
+        """
+        if not kwargs:
+            self.id = str(uuid4())
+            self.created_at = self.updated_at = datetime.now()
+            storage.new(self)
+        else:
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    if key in ('created_at', 'updated_at'):
+                        setattr(self, key, datetime.fromisoformat(value))
+                    else:
+                        setattr(self, key, value)
+                        
     def __str__(self):
     """
     Returns string representation of Basemodel
