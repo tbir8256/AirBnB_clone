@@ -1,57 +1,35 @@
 #!/usr/bin/python3
-"""
-Defines the BaseModel class
-"""
+"""Defines the BaseModel class."""
 
+import models
 from uuid import uuid4
 from datetime import datetime
 
 
 class BaseModel:
-    """
-    A class that defines attributes/methods for other classes
-    """
+    """Implements the BaseModel method."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, id, created_at, updated_at):
+        """Initialize a new BaseModel.
         """
-        Initialize the BaseModel class
-        """
-
-        
-        if not kwargs:
-            self.id = str(uuid4())
-            self.created_at = self.updated_at = datetime.now()
-            storage.new(self)
-        else:
-            for key, value in kwargs.items():
-                if key != '__class__':
-                    if key in ('created_at', 'updated_at'):
-                        setattr(self, key, datetime.fromisoformat(value))
-                    else:
-                        setattr(self, key, value)
-
-    def __str__(self):
-        """
-        Returns the string representation of BaseModel
-        """
-        return "[{}] ({}) {}".format(type(self).__name__, self.id,
-                                     self.__dict__)
+        tform = "%Y-%m-%dT%H:%M:%S.%f"
+        self.id = str(uuid4())
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
 
     def save(self):
-        """
-        Updates 'self.updated_at'
-        """
-        self.updated_at = datetime.now()
+        """Update updated_at"""
+        self.updated_at = datetime.today()
 
     def to_dict(self):
+        """Return the dictionary of the BaseModel instance.
         """
-        returns a dictionary with all keys or values of __dict__
-        of the instance
-        """
-        dict_1 = self.__dict__.copy()
-        dict_1["__class__"] = self.__class__.__name__
-        for i, j in self.__dict__.items():
-            if i in ("created_at", "updated_at"):
-                j = self.__dict__[i].isoformat()
-                dict_1[i] = j
-        return dict_1
+        bdict = self.__dict__.copy()
+        bdict["created_at"] = self.created_at.isoformat()
+        bdict["updated_at"] = self.updated_at.isoformat()
+        bdict["__class__"] = self.__class__.__name__
+        return bdict
+
+    def __str__(self):
+        """Return the str representation of the BaseModel instance."""
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
