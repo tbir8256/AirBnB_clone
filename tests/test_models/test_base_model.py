@@ -6,13 +6,14 @@ Unittest classes:
     TestBaseModel_save
     TestBaseModel_to_dict
 """
-import os
-import models
 import unittest
-from datetime import datetime
 from time import sleep
-from models.base_model import BaseModel
+import os
+from datetime import datetime
+from uuid import uuid4
 
+import models
+from models.base_model import BaseModel
 
 class TestBaseModel_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the BaseModel class."""
