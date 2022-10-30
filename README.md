@@ -1,4 +1,4 @@
-** AirBnB_clone**
+** AirBnB clone**
 **Creates a web application of the AirBnB clone**
 
 **COMMAND INTERPRETER**
