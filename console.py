@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
             command = HBNBCommand.valid_commands[command]
             command(class_name, arg)
         except:
-            return(cmd.Cmd.default(self, arg))
+            return (cmd.Cmd.default(self, arg))
 
     def do_quit(self, s):
         """A method that allows users to quit."""
@@ -114,7 +114,8 @@ class HBNBCommand(cmd.Cmd):
             if len(args) != 2:
                 print("** instance id missing **")
             elif "{}.{}".format(args[0], args[1]) in HBNBCommand.objects_dict:
-                del(HBNBCommand.objects_dict["{}.{}".format(args[0], args[1])])
+                del (HBNBCommand.objects_dict["{}.{}".format(args[0],
+                                                             args[1])])
             else:
                 print("** no instance found **")
         else:
@@ -189,7 +190,7 @@ class HBNBCommand(cmd.Cmd):
                         except:
                             print("You can't cast to type: {}".format(type_))
                         except:
-                        setattr(instance, arg[2], str(args[3]))
+                            setattr(instance, arg[2], str(args[3]))
 
     def help_update(self):
         """A command that updates instances. Usage: update <class name> """
