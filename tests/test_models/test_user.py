@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module for unittests for the User class
+Module for unittests for the User class.
 """
 import unittest
 import os
