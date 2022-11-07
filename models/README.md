@@ -1,1 +1,1 @@
-Contains scripts for model methods
+Contains scripts for model methods.

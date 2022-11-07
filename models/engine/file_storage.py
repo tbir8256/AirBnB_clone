@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""Defines the FileStorage class"""
+"""Defines the FileStorage class."""
 
 import json
 from models.base_model import BaseModel
+
 
 class FileStorage:
     """Represent an Storage engine
@@ -22,7 +23,7 @@ class FileStorage:
         """Set __objects obj with obj_class_name.id"""
         objname = obj.__class__.__name__
         FileStorage.__objects["{}.{}".format(objname, obj.id)] = obj
-        
+
     def save(self):
         """Serialize __objects to the JSON file __file_path."""
         odict = FileStorage.__objects

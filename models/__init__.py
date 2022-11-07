@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""impleent method BaseModel
+"""impleent method BaseModel.
 """
 
 from models.engine.file_storage import FileStorage
